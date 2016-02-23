@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.User;
+
 
 
 public class AuthVerifServlet extends HttpServlet {
@@ -45,9 +47,8 @@ public class AuthVerifServlet extends HttpServlet {
 	        out.println("<body bgcolor=\"white\">");
 
 	        out.println("<h1>" + title + u.getLogin() + u.getPassword() +  "</h1>"
-	        		+ "<a href=\"/dc">" Deconnection </a>"); //C'était pour tester la déconnexion
-
-		}
+	        		+ "<a href=\"/dc">" Deconnection </a>");
+	        //C'était pour tester la déconnexion masi le /dc ne fonctionne pas, si on peut régler ça	}
 		
         out.println("</body>");
         out.println("</html>");

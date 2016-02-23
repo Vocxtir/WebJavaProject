@@ -1,9 +1,11 @@
 package persistance;
 
 import model.Avion;
+import model.User;
 
 
 public interface IPersistance {
-	public void stockerCamion (Avion camion) throws Exception;
-	public Avion trouverCamion (String immat);
+	public void stockerAvion (Avion avion) throws Exception;
+	public Avion trouverQvion (String immat);
+	public void addUser(User user) throws Exception ;
 }
