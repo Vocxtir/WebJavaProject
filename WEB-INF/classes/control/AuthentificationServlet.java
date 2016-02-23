@@ -42,6 +42,6 @@ public class AuthentificationServlet extends HttpServlet {
     }
 
 	
-	//Hello GIt
+	//Hello Git faggot
 }
 
