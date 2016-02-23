@@ -1,23 +1,20 @@
 package control;
 
-
-
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.Avion;
-import model.AvionSA;
+import model.User;
+import model.VolSA;
 
 public class AvionAddServlet extends HttpServlet {
 
-/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+
+	private static final long serialVersionUID = -226096639486289909L;
+
+	/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException { 
 		
 		String functionRequest = request.getParameter("function");
@@ -43,17 +40,18 @@ public class AvionAddServlet extends HttpServlet {
 		
 	}
 	*/
-	protected void doPost (HttpServletRequest request, HttpServletResponse resp)
-			throws ServletException, java.io.IOException {
+	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 		//Identifier le service demandé
 		String functionRequest = request.getParameter("controlFunction");
-		if (functionRequest.equals("addCamion")) {
-			int mat			= Integer.parseInt(request.getParameter("mat")) ;
-			String brand	= request.getParameter("brand");
-			String cityLoc	= request.getParameter("cityLoc");	
+		if (functionRequest.equals("reserver")) {
+			String login = request.getParameter("login");
+			String password = request.getParameter("paswword");
+			String destination	= request.getParameter("destination");
+			String dateDepart	= request.getParameter("date");	
+			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
 			
 			try{	//Executer le service demandé
-				AvionSA.createAvion(mat,brand,cityLoc); 
+				VolSA.createReservation(new User(login, password), destination, dateDepart, nbPlaces); 
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){
@@ -66,7 +64,7 @@ public class AvionAddServlet extends HttpServlet {
 		else if (functionRequest.equalsIgnoreCase("search"))
 				
 			try{	//Executer le service demandé
-				request.setAttribute("mat",AvionSA.localiser(Integer.parseInt(request.getParameter("mat"))));
+				request.setAttribute("mat",VolSA.getDestination(Integer.parseInt(request.getParameter("mat"))));
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){

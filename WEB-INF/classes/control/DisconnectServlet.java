@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 public class DisconnectServlet extends HttpServlet {
 
+	private static final long serialVersionUID = -7736247186414685664L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException { 
 
