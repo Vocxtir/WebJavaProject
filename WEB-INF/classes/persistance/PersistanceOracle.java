@@ -6,27 +6,29 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Avion;
+import model.Reservation;
 import model.User;
 
 public class PersistanceOracle implements IPersistance {
 
 	Connection connexion;
-	PreparedStatement pStStockerAvion;
+	PreparedStatement pAddVol;
+	PreparedStatement pAddReservation ;
 	PreparedStatement pAddNewUser ;
 	
 	public PersistanceOracle() throws Exception {
 		Class.forName ("oracle.jdbc.OracleDriver");
 		connexion = DriverManager.getConnection("vs-oracle", "GRP...", "GRP...");
-		pStStockerAvion = connexion.prepareStatement("insert into Camions values (?, ?, ?)");
+		pAddVol = connexion.prepareStatement("insert into Camions values (?, ?, ?)");
 		pAddNewUser = connexion.prepareStatement("insert into USER values (?,?)");
 	}
 	
 	@Override
-	public void stockerAvion(Avion avion) throws Exception {
-		pStStockerAvion.setLong (1, avion.getMat());
-		pStStockerAvion.setString (2, avion.getBrand());
-		pStStockerAvion.setString (3, avion.getLocCity());
-		pStStockerAvion.executeUpdate();
+	public void addAvion(Avion avion) throws Exception {
+		pAddVol.setLong (1, avion.getMat());
+		pAddVol.setString (2, avion.getBrand());
+		pAddVol.setString (3, avion.getLocCity());
+		pAddVol.executeUpdate();
 	}
 	
 	
@@ -37,6 +39,7 @@ public class PersistanceOracle implements IPersistance {
 		return null;
 	}
 
+	
 	@Override
 	public void addUser(User user) throws Exception {
 		pAddNewUser.setString(1, user.getLogin());
@@ -44,6 +47,8 @@ public class PersistanceOracle implements IPersistance {
 		
 	}
 
-
+	public void addReservation (Reservation reservation){
+		
+	}
 
 }
