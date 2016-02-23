@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Avion;
-import model.CamionSA;
+import model.AvionSA;
 
-public class CamionAddServlet extends HttpServlet {
+public class AvionAddServlet extends HttpServlet {
 
 /*	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException { 
@@ -53,7 +53,7 @@ public class CamionAddServlet extends HttpServlet {
 			String cityLoc	= request.getParameter("cityLoc");	
 			
 			try{	//Executer le service demandé
-				CamionSA.createCamion(mat,brand,cityLoc); 
+				AvionSA.createAvion(mat,brand,cityLoc); 
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){
@@ -66,7 +66,7 @@ public class CamionAddServlet extends HttpServlet {
 		else if (functionRequest.equalsIgnoreCase("search"))
 				
 			try{	//Executer le service demandé
-				request.setAttribute("mat",CamionSA.localiser(Integer.parseInt(request.getParameter("mat"))));
+				request.setAttribute("mat",AvionSA.localiser(Integer.parseInt(request.getParameter("mat"))));
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){
