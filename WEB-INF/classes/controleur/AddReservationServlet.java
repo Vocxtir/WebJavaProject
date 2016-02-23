@@ -1,4 +1,4 @@
-package control;
+package controleur;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.User;
-import model.VolSA;
+import modele.User;
+import modele.VolSA;
 
-public class AvionAddServlet extends HttpServlet {
+public class AddReservationServlet extends HttpServlet {
 
 
 	private static final long serialVersionUID = -226096639486289909L;
-
+	{
 	/*	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException { 
 		
@@ -39,7 +39,7 @@ public class AvionAddServlet extends HttpServlet {
 	}
 		
 	}
-	*/
+	*/}
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 		//Identifier le service demandé
 		String functionRequest = request.getParameter("controlFunction");
@@ -51,12 +51,12 @@ public class AvionAddServlet extends HttpServlet {
 			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
 			
 			try{	//Executer le service demandé
-				VolSA.createReservation(new User(login, password), destination, dateDepart, nbPlaces); 
+				VolSA.creerReservation(new User(login, password), destination, dateDepart, nbPlaces); 
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){
-				request.setAttribute("Error",e); }
-			
+				request.setAttribute("Error",e); 
+			}
 			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispCamion.jsp");
 			reqDisp.forward(request, resp);
 			

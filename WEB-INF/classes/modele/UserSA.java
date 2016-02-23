@@ -1,4 +1,4 @@
-package model;
+package modele;
 
 public class UserSA {
 	public static void createUser (String username, String password) {

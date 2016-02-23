@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-import model.Vol;
-import model.User;
+import modele.Reservation;
+import modele.User;
+import modele.Vol;
 
 public class PersistanceOracle implements IPersistance {
 
@@ -37,12 +38,21 @@ public class PersistanceOracle implements IPersistance {
 		pAddNewUser.setString(2, user.getPassword());
 	}
 
-	public void addVol(int numVol, Vol vol){
-		
-	}
 	@Override
 	public Vol trouverVol(int numVol) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addVol(Vol vol) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addReservation(Reservation v) {
+		// TODO Auto-generated method stub
+		
 	}
 }

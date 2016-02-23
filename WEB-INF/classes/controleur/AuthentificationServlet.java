@@ -1,4 +1,4 @@
-package control;
+package controleur;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import persistance.IPersistance;
 import persistance.PersistanceOracle;
-import model.User;
+import modele.User;
 
 
 
