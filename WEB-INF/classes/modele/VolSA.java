@@ -2,7 +2,7 @@ package modele;
 
 public class VolSA {
 
-	public static void createVol (int numVol, String destination, String dateDepart, int nbPlacesDispos, double prix) {
+	public static void createVol (int numVol, String destination, String dateDepart, int nbPlacesDispos, double prix) throws Exception {
 		Vol vol = controleur.AuthentificationServlet.persist.trouverVol(numVol);
 		if (vol != null)
 			throw new IllegalArgumentException("Ville ou camion non existant");
@@ -11,7 +11,7 @@ public class VolSA {
 
 	}
 
-	public static String getDestination(int numVol) {
+	public static String getDestination(int numVol) throws Exception {
 		Vol vol = controleur.AuthentificationServlet.persist.trouverVol(numVol);
 		if (vol == null)
 			try {
@@ -23,7 +23,7 @@ public class VolSA {
 		return vol.getDestination();
 	}
 
-	public static void creerReservation(User client, String destination, String dateDepart, int nbPlacesSouhaitées){
+	public static void creerReservation(User client, String destination, String dateDepart, int nbPlacesSouhaitées) throws Exception{
 		controleur.AuthentificationServlet.persist.addReservation(new Reservation(client, destination, dateDepart, nbPlacesSouhaitées));
 	}
 }
