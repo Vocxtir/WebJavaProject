@@ -1,10 +1,12 @@
 <web-app>
 	<servlet>
-		<servlet-name> AjoutCamion </servlet-name>
-		<servlet-class> control.CamionAddServlet </servlet-class>
+		<servlet-name> AjoutReservation </servlet-name>
+		<servlet-class> control.AddReservationServlet </servlet-class>
 	</servlet>
+
+	
 	<servlet-mapping>
-		<servlet-name> AjoutCamion </servlet-name>
+		<servlet-name> AjoutUser </servlet-name>
 		<url-pattern> /control </url-pattern>
 	</servlet-mapping>
 	

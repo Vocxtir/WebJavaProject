@@ -43,9 +43,11 @@ public class AddReservationServlet extends HttpServlet {
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 		//Identifier le service demandé
 		String functionRequest = request.getParameter("controlFunction");
+		
 		if (functionRequest.equals("reserver")) {
-			String login = request.getParameter("login");
-			String password = request.getParameter("paswword");
+			
+			String login 		= request.getParameter("login");
+			String password		= request.getParameter("paswword");
 			String destination	= request.getParameter("destination");
 			String dateDepart	= request.getParameter("date");	
 			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
@@ -57,7 +59,7 @@ public class AddReservationServlet extends HttpServlet {
 			catch (Exception e){
 				request.setAttribute("Error",e); 
 			}
-			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispCamion.jsp");
+			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispReservation.jsp");
 			reqDisp.forward(request, resp);
 			
 		}
