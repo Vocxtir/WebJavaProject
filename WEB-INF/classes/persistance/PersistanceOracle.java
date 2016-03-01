@@ -78,9 +78,4 @@ public class PersistanceOracle implements IPersistance {
 		}
 	}
 
-	@Override
-	public void stockerVol(Vol vol){
-		// TODO Auto-generated method stub
-		
-	}
 }
