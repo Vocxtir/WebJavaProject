@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
 <%
 	Exception error = (Exception) request.getAttribute("Error");
 	String mat = request.getParameter("mat");

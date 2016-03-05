@@ -1,5 +1,5 @@
 <html>
-
+<%@ page pageEncoding="UTF-8" %>
 <%@ page import="java.util.Date" %>
 <% 
 	 Date today = new Date(); 
