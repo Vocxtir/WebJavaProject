@@ -1,18 +1,20 @@
 package modele;
 
+import controleur.ControlServlet; 
+
 public class VolSA {
 
 	public static void createVol (int numVol, String destination, String dateDepart, int nbPlacesDispos, double prix) throws Exception {
-		Vol vol = controleur.AuthentificationServlet.persist.trouverVol(numVol);
+		Vol vol = ControlServlet.persist.trouverVol(numVol);
 		if (vol != null)
 			throw new IllegalArgumentException("Ville ou camion non existant");
 		vol = new Vol (numVol, destination, dateDepart, nbPlacesDispos, prix);
-		controleur.AuthentificationServlet.persist.addVol(vol);
+		ControlServlet.persist.addVol(vol);
 
 	}
 
 	public static String getDestination(int numVol) throws Exception {
-		Vol vol = controleur.AuthentificationServlet.persist.trouverVol(numVol);
+		Vol vol = ControlServlet.persist.trouverVol(numVol);
 		if (vol == null)
 			try {
 				throw new Exception ("Aucun vol de ce numéro de vol enregistré");
@@ -23,7 +25,5 @@ public class VolSA {
 		return vol.getDestination();
 	}
 
-	public static void creerReservation(User client, String destination, String dateDepart, int nbPlacesSouhaitées) throws Exception{
-		controleur.AuthentificationServlet.persist.addReservation(new Reservation(client, destination, dateDepart, nbPlacesSouhaitées));
-	}
+
 }

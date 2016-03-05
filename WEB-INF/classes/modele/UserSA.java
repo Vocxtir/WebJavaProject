@@ -1,8 +1,21 @@
 package modele;
 
+import javax.servlet.http.HttpSession;
+
+import controleur.ControlServlet;
+
 public class UserSA {
-	public static void createUser (String username, String password) {
+	public static void createUser (String username, String password) throws Exception {
+		
+		if (ControlServlet.persist.findUserByName(username))
+			throw new Exception("Utilisateur existant");
 		User u = new User (username,password);
-		//créer methode avec persistance
+		ControlServlet.persist.addUser(u);
+	}
+	
+	public static boolean authentificateUser(String username, String password){
+		if (ControlServlet.persist.authentificateUser(new User(username, password)))
+			return true ;	
+		return false ;
 	}
 }

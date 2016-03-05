@@ -1,15 +1,31 @@
 <web-app>
-	<servlet>
-		<servlet-name> AjoutReservation </servlet-name>
-		<servlet-class> control.AddReservationServlet </servlet-class>
-	</servlet>
 
 	
+	<servlet>
+		<servlet-name> AuthentificateUser </servlet-name>
+		<servlet-class> controleur.ControlServlet  </servlet-class>
+	</servlet>
 	<servlet-mapping>
-		<servlet-name> AjoutUser </servlet-name>
+		<servlet-name> AuthentificateUser </servlet-name>
 		<url-pattern> /control </url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name> SignUp </servlet-name>
+		<servlet-class> controleur.ControlServlet  </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name> SignUp </servlet-name>
+		<url-pattern> /control  </url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name> AjoutReservation </servlet-name>
+		<servlet-class> controleur.ControlServlet </servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name> AjoutReservation </servlet-name>
+		<url-pattern> /control </url-pattern>
+	</servlet-mapping>
 
 </web-app>

@@ -13,21 +13,18 @@ import persistance.IPersistance;
 import persistance.PersistanceOracle;
 import modele.User;
 
+/**
+ * 
+ * @author Vocxtir
+ *ON NE S'EN SERVIRA PAS
+ */
 
 
 public class AuthentificationServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -6562063338129275392L;
 
-	public static IPersistance persist;
-	
-	public void init(){
-		try {
-			persist= new PersistanceOracle();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { 
 		
