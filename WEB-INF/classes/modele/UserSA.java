@@ -1,6 +1,5 @@
 package modele;
 
-import javax.servlet.http.HttpSession;
 
 import controleur.ControlServlet;
 
