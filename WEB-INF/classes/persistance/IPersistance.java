@@ -6,9 +6,16 @@ import modele.Vol;
 
 
 public interface IPersistance {
-	public void stockerVol (Vol vol);
 	public Vol trouverVol (int numVol);
+	
+	public boolean authentificateUser(User u);
 	public void addUser(User user);
+	
+	public boolean findUserByID (int UserID) ;
+	public boolean findUserByName (String username);
+	
 	public void addVol(Vol vol);
 	public void addReservation(Reservation v);
+
+	
 }

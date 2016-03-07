@@ -11,7 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import modele.User;
 
-
+/**
+ * 
+ * @author Vocxtir
+ *ON NE S'EN SERVIRA PAS
+ */
 
 public class AuthVerifServlet extends HttpServlet {
 

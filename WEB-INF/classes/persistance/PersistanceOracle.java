@@ -10,67 +10,122 @@ import modele.User;
 import modele.Vol;
 
 public class PersistanceOracle implements IPersistance {
+	//Oracle
+	public static String _url="jdbc:oracle:thin:@vs-oracle:1521:ORCL", _user = "GRP204US11", _password = "GRP204US11" ;		
 
+	//MySQL
+	//public static String _url="jdbc:mysql://localhost:8080/TousAuSoleil" , _user = "root" , _password = "" ;	
 	Connection connexion;
-	PreparedStatement pStStockerVol;
+	
+	PreparedStatement pAddVol;
+
+	PreparedStatement pAddReservation;
+	
 	PreparedStatement pAddNewUser ;
-	PreparedStatement pStStockerReservation;
+	PreparedStatement pAuthentificateUser ;
+	PreparedStatement pFindUserByID ;
+	PreparedStatement pFindUserByName ;
 
 	public PersistanceOracle(){
 		try {
 			Class.forName ("oracle.jdbc.OracleDriver");
-		connexion = DriverManager.getConnection("vs-oracle", "GRP...", "GRP...");
-		pStStockerVol = connexion.prepareStatement("insert into vol values (?, ?, ?)");
+			//Class.forName ("com.mysql.jdbc.Driver");
+				
+		connexion = DriverManager.getConnection(_url, _user, _password);
+		pAddVol = connexion.prepareStatement("insert into VOL values (?, ?, ?)");
+		
+		pAddReservation = connexion.prepareStatement("insert into RESERVATIONS values (?, ?, ?, ?)");
+		
 		pAddNewUser = connexion.prepareStatement("insert into USER values (?,?)");
-		pStStockerReservation = connexion.prepareStatement("insert into vol values (?, ?, ?)");
+		pAuthentificateUser = connexion.prepareStatement("select * from USER where USERNAME = ? and PASSWORD = ?");
+		pFindUserByID = connexion.prepareStatement("select * from USER where ID = ?");
+		pFindUserByName = connexion.prepareStatement("select * from USER where USERNAME = ?");
+		
+		
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
+	}
 
 	@Override
 	public void addVol(Vol vol){
 		try {
-			pStStockerVol.setInt (1, vol.getNumVol());
-			pStStockerVol.setString (2, vol.getDestination());
-			pStStockerVol.setString (3, vol.getDateDepart());
-			pStStockerVol.setInt (4, vol.getNbPlacesDispos());
-			pStStockerVol.setDouble (5, vol.getPrix());
-			pStStockerVol.executeUpdate();
+			pAddVol.setInt (1, vol.getNumVol());
+			pAddVol.setString (2, vol.getDestination());
+			pAddVol.setString (3, vol.getDateDepart());
+			pAddVol.setInt (4, vol.getNbPlacesDispos());
+			pAddVol.setDouble (5, vol.getPrix());
+			pAddVol.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
-
-	@Override
-	public void addUser(User user){
-		try {
-			pAddNewUser.setString(1, user.getLogin());
-			pAddNewUser.setString(2, user.getPassword());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	@Override
 	public Vol trouverVol(int numVol) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public boolean authentificateUser (User u){
+		try {
+			pAuthentificateUser.setString(1, u.getLogin());
+			pAuthentificateUser.setString(2, u.getPassword());
+			return pAuthentificateUser.executeQuery() != null ? true : false ;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	@Override
+	public void addUser(User user){
+		try {
+			pAddNewUser.setString(1, user.getLogin());
+			pAddNewUser.setString(2, user.getPassword());
+			pAddNewUser.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public boolean findUserByID (int userID){
+		try {
+			pFindUserByID.setInt(1, userID);
+			
+			return pFindUserByID.executeQuery() != null ? true:false ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean findUserByName (String username){
+		try {
+			pFindUserByName.setString(1, username);
+			
+			return pFindUserByName.executeQuery() != null ? true:false ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	
 
 	@Override
 	public void addReservation(Reservation resa){
 		try{
-			pStStockerReservation.setString(1, resa.getClient().getLogin());
-			pStStockerReservation.setString(2, resa.getClient().getPassword());
-			pStStockerReservation.setString (3, resa.getDestination());
-			pStStockerReservation.setString (4, resa.getDateDepart());
-			pStStockerReservation.setInt (5, resa.getNbPlaces());
-			pStStockerReservation.executeUpdate();
+			pAddReservation.setString(1, resa.getClient().getLogin());
+			pAddReservation.setString (2, resa.getDestination());
+			pAddReservation.setString (3, resa.getDateDepart());
+			pAddReservation.setInt (4, resa.getNbPlaces());
+			pAddReservation.executeUpdate();
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -78,9 +133,4 @@ public class PersistanceOracle implements IPersistance {
 		}
 	}
 
-	@Override
-	public void stockerVol(Vol vol){
-		// TODO Auto-generated method stub
-		
-	}
 }

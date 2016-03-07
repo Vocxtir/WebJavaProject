@@ -1,6 +1,6 @@
 <html>
 <!-- //catalogue.JSP?action={consulter|ajouter}&product={nom_du_produit} -->
-
+<%@ page pageEncoding="UTF-8" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Array List" %>
