@@ -4,8 +4,7 @@ package modele;
 import controleur.ControlServlet;
 
 public class UserSA {
-	public static void createUser (User u) throws Exception {
-		
+	public void createUser (User u) throws Exception {
 		if (ControlServlet.persist.checkUser(u))
 			throw new Exception("Utilisateur existant");
 		else {
@@ -13,8 +12,8 @@ public class UserSA {
 		}
 	}
 	
-	public static boolean authentificateUser(User u){
-		if (ControlServlet.persist.authentificateUser(u))
+	public boolean signInUser(User u){
+		if (ControlServlet.persist.checkUser(u))
 			return true ;	
 		return false ;
 	}

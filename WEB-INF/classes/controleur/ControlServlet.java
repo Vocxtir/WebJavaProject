@@ -15,39 +15,23 @@ import persistance.IPersistance;
 import persistance.PersistanceOracle;
 
 public class ControlServlet extends HttpServlet {
-	
+
 	private static final long serialVersionUID = -226096639486289909L;
-	
-	public static IPersistance persist;
-	
-	public void init(){
-		try {
-			persist= new PersistanceOracle();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
+	public static IPersistance persist = new PersistanceOracle();
 
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 		//Identifier le service demandé
-		String functionRequest = request.getParameter("controlFunction");
-		
 		String login		= request.getParameter("login") ;
 		String password 	= request.getParameter("password");
 		String name			= request.getParameter("name");
 		String lastname		= request.getParameter("lastname");
 		User u = new User (login, password, name, lastname);
 		
-		if (functionRequest.equalsIgnoreCase("authentification")){
-			if(UserSA.authentificateUser(u)){
-				HttpSession session = request.getSession(true);
-				session.setAttribute("User", u) ;
-			}
-			else {
-				//go signup
-			}
+		if (request.getParameter("controlFunction").equalsIgnoreCase("signIn")){
+			new SignIn(u).signIn();
 		}
-		else if (functionRequest.equalsIgnoreCase("signup")){
+		if (functionRequest.equalsIgnoreCase("signup")){
 			try {
 				UserSA.createUser(u);
 			} catch (Exception e) {e .printStackTrace();}
@@ -65,24 +49,23 @@ public class ControlServlet extends HttpServlet {
 			}
 			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispReservation.jsp");
 			reqDisp.forward(request, resp);
-			
+
 		}
 		else if (functionRequest.equalsIgnoreCase("search"))
-				
 			try{	//Executer le service demandé
 				request.setAttribute("mat",VolSA.getDestination(Integer.parseInt(request.getParameter("mat"))));
 				request.setAttribute("confirmation", true);
 			}
-			catch (Exception e){
-				request.setAttribute("Error",e); }
-			
+		catch (Exception e){
+			request.setAttribute("Error",e); 
+		}
 		//Mettre les résultats à la vue
-			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispCamion.jsp");
-			reqDisp.forward(request, resp);
-	
+		RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispCamion.jsp");
+		reqDisp.forward(request, resp);
+
 	}
-	
-	
+
+
 }
 
 

@@ -12,14 +12,22 @@ public class User {
 		this.password = passw ;
 		this.name = name;
 		this.lastname = lastname;
-		this.role = "client";
+		this.role = "Client";
 	}
 
-	public String getNom() {
+	public User (String log, String passw, String name, String lastname, String role) {
+		this.login = log ;
+		this.password = passw ;
+		this.name = name;
+		this.lastname = lastname;
+		this.role = role;
+	}
+	
+	public String getName() {
 		return name;
 	}
 
-	public String getPrenom() {
+	public String getLastname() {
 		return lastname;
 	}
 
