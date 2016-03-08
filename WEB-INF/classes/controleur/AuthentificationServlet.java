@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.Request;
+
 import persistance.IPersistance;
 import persistance.PersistanceOracle;
 import modele.User;
@@ -30,8 +32,9 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		String login		= request.getParameter("login") ;
 		String password 	= request.getParameter("password");
-		
-		User u = new User (login, password);
+		String name			= request.getParameter("name");
+		String lastname		= request.getParameter("lastname");
+		User u = new User (login, password, name, lastname);
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("User", u) ;
