@@ -1,48 +1,63 @@
-<html>
-
-	<body>
-
-
-		<h1> Hellow World ! </h1>
-		
-		<h3> Authentification <h3>
-
-		<form action="../control" method="POST">
-			  Identifiant :<br>
-			  <input type="text" name="login" value=""><br>
-			  Mot de Passe :<br>
-			  <input type="text" name="password" value=""><br><br>
-			  <input type="hidden" name="controlFunction" value="addCamion"><br><br>
-			  <input type="submit" value="Submit">
-		</form>
-			
-			
-			
-		<h3> Saisie de reservation <h3>
-
-		<form action="../control" method="POST">
-			  Destination :<br>
-			  <input type="text" name="destination" value=""><br>
-			  Date :<br>
-			  <input type="text" name="date" value=""><br><br>
-			  Nombre de places:<br>
-			  <input type="text" name="nbPlaces" value=""><br><br>
-			  <input type="hidden" name="controlFunction" value="reserver"><br><br>
-			  <input type="submit" value="Submit">
-		</form> 
-		
-		<h3> Recherche </h3>
-		<form action="../control" method="POST">
-			Camion : <input type="text" name="mat" /> <br>
-			Son auteur : <input type="text" name="auteurLivre" /> <br>
-			<input type="hidden" name="controlFunction" value="search" />
-			<p> <input type="submit" value="Valider">
-		</form>
-
-	<body>
-
-
-
-
-
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>B.F.C.E - Home</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="header">
+		<h1>Best Flight Company Ever</h1>
+		<h2>You're gonna be high... in the air</h2>
+	</div>
+	<div id="middle">
+		<div id="focus">
+			<div id="navigation">
+				<h3>Navigation</h3>
+				<ul>
+					<li><a href="#" class="active">Home</a></li>
+					<li><a href="#">Random useless column</a></li>
+					<li><a href="#">Flat Flights List</a></li>
+					<li><a href="#">Examples</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			<div id="quicksearch">
+				<form action="../control" method="POST">
+					<fieldset>
+					<legend>Sign In</legend>
+					<label for="login">Login</label>
+					<input type="text" name="login" value="">
+					<label for="pass">Password</label>
+          <input type="password" name="password" value="">
+          <input type="hidden" name="controlFunction" value="signin">
+					<button type="submit" id="submit-go" class="submit">Log in</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div id="content">
+			<div class="row">
+				<div class="onequartercolumn">
+					<h3>Client Spotlight</h3>
+					<p>Blablabla. This client is a great sponsor, and our biggest owner in terms of shares !</p>
+				</div>
+				<div class="threequartercolumn gray">
+					<h3>Learning Is Important</h3>
+					<img src="images/34007.jpg" width="150" height="105" alt="Business Image" class="right" />
+					<p>Larth was hopeful. He had been healthy all his life, partly, he believed, because he had always been careful to show respect to the numina he encountered on his journeys.
+          Respecting the numina was important. The numen of the river could suck a man under and drown him. The numen of a tree could trip a man with its roots, or drop a rotten branch on his head. Rocks could give way underfoot, chuckling with amusement at their own treachery. Even the sky, with a roar of fury, sometimes sent down fingers of fire that could roast a man like a rabbit on a spit, or worse, leave him alive but robbed of his senses. Larth had heard that the earth itself could open and swallow a man; though he had never actually seen such a thing, he nevertheless performed a ritual each morning, asking the earth’s permission before he went striding across it.
+          “There’s something so special about this place,”.</p>
+				</div>
+			</div>
+			<p class="top"><a href="#">Return to Top</a></p>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright &copy; 2016 <a href="#">Best Flight Company Ever</a> | Design by: <a href="http://www.weissmike.com">Mike Weiss</a></p>
+</div>
+</body>
 </html>
