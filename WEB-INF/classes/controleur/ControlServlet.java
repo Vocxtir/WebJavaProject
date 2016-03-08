@@ -32,39 +32,32 @@ public class ControlServlet extends HttpServlet {
 		//Identifier le service demandé
 		String functionRequest = request.getParameter("controlFunction");
 		
+		String login		= request.getParameter("login") ;
+		String password 	= request.getParameter("password");
+		String name			= request.getParameter("name");
+		String lastname		= request.getParameter("lastname");
+		User u = new User (login, password, name, lastname);
+		
 		if (functionRequest.equalsIgnoreCase("authentification")){
-			String login 		= request.getParameter("login");
-			String password		= request.getParameter("paswword");
-			
-			if(UserSA.authentificateUser(login, password)){
+			if(UserSA.authentificateUser(u)){
 				HttpSession session = request.getSession(true);
-				User u = new User(login, password);
 				session.setAttribute("User", u) ;
 			}
 			else {
 				//go signup
 			}
-			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispReservation.jsp");
-			reqDisp.forward(request, resp);
 		}
 		else if (functionRequest.equalsIgnoreCase("signup")){
-			String login 		= request.getParameter("login");
-			String password		= request.getParameter("paswword");
-			
 			try {
-				UserSA.createUser(login, password);
+				UserSA.createUser(u);
 			} catch (Exception e) {e .printStackTrace();}
 		}
 		else if (functionRequest.equals("reserver")) {
-			
-			String login 		= request.getParameter("login");
-			String password		= request.getParameter("password");
 			String destination	= request.getParameter("destination");
 			String dateDepart	= request.getParameter("date");	
 			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
-			
 			try{	//Executer le service demandé
-				ReservationSA.creerReservation(new User(login, password), destination, dateDepart, nbPlaces); 
+				ReservationSA.creerReservation(u, destination, dateDepart, nbPlaces); 
 				request.setAttribute("confirmation", true);
 			}
 			catch (Exception e){

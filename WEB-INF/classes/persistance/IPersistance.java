@@ -11,8 +11,10 @@ public interface IPersistance {
 	public boolean authentificateUser(User u);
 	public void addUser(User user);
 	
-	public boolean findUserByID (int UserID) ;
-	public boolean findUserByName (String username);
+	public boolean checkUser(User u);
+	public User findUserByID (int UserID);
+	public User findUserByLogin (String login);
+	
 	
 	public void addVol(Vol vol);
 	public void addReservation(Reservation v);
