@@ -15,6 +15,9 @@ import persistance.IPersistance;
 import persistance.PersistanceOracle;
 
 public class ControlServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = -226096639486289909L;
+	
 	public static IPersistance persist;
 	
 	public void init(){
@@ -25,12 +28,9 @@ public class ControlServlet extends HttpServlet {
 		}
 	}
 
-	private static final long serialVersionUID = -226096639486289909L;
-
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 		//Identifier le service demandé
 		String functionRequest = request.getParameter("controlFunction");
-		
 		
 		if (functionRequest.equalsIgnoreCase("authentification")){
 			String login 		= request.getParameter("login");
@@ -40,6 +40,9 @@ public class ControlServlet extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				User u = new User(login, password);
 				session.setAttribute("User", u) ;
+			}
+			else {
+				//go signup
 			}
 			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispReservation.jsp");
 			reqDisp.forward(request, resp);

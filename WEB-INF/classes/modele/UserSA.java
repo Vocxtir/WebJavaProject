@@ -8,8 +8,10 @@ public class UserSA {
 		
 		if (ControlServlet.persist.findUserByName(username))
 			throw new Exception("Utilisateur existant");
-		User u = new User (username,password);
-		ControlServlet.persist.addUser(u);
+		else {
+			User u = new User (username,password);
+			ControlServlet.persist.addUser(u);
+		}
 	}
 	
 	public static boolean authentificateUser(String username, String password){
