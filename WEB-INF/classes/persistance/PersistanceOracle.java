@@ -29,6 +29,7 @@ public class PersistanceOracle implements IPersistance {
 
 	public PersistanceOracle(){
 		try {
+			Class.forName ("oracle.jdbc.OracleDriver");
 			//Class.forName ("com.mysql.jdbc.Driver");
 
 			connexion = DriverManager.getConnection(_url, _user, _password);
@@ -40,7 +41,7 @@ public class PersistanceOracle implements IPersistance {
 			pAddNewUser = connexion.prepareStatement("insert into USER values (?,?,?,?,?)");
 			pCheckUser = connexion.prepareStatement("select * from USER where Login = ? and mdp = ?");
 			pFindUserByLogin = connexion.prepareStatement("select * from USER where Login = ?");
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}

@@ -27,14 +27,14 @@ public class ControlServlet extends HttpServlet {
 		String name			= request.getParameter("name");
 		String lastname		= request.getParameter("lastname");
 		User u = new User (login, password, name, lastname);
-		
+		HttpSession session = request.getSession(true);
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signIn")){
-			new SignIn(u).signIn();
+			if (new SignIn(u).signIn()) session.setAttribute("User", u);
+			else new SignUp(u).signUp();
 		}
-		if (functionRequest.equalsIgnoreCase("signup")){
-			try {
-				UserSA.createUser(u);
-			} catch (Exception e) {e .printStackTrace();}
+		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
+			if (new SignUp(u).signUp()) session.setAttribute("User", u);
+			else new SignIn(u).signIn();
 		}
 		else if (functionRequest.equals("reserver")) {
 			String destination	= request.getParameter("destination");
