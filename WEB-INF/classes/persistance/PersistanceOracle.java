@@ -92,7 +92,7 @@ public class PersistanceOracle implements IPersistance {
 	}
 
 	@Override
-	public User findUserByLogin (String login){
+	public User getUser(String login){
 		try {
 			pFindUserByLogin.setString(1, login);
 			ResultSet resultat = pFindUserByLogin.executeQuery();

@@ -31,24 +31,48 @@ public class ControlServlet extends HttpServlet {
 		User u = new User (login, password, name, lastname);
 		
 		HttpSession session = request.getSession(true);
+		RequestDispatcher reqDisp = null;
 		
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signIn")){
 			if (auth.signIn(u)){
 				session.setAttribute("User", u);
-				RequestDispatcher reqDisp = request.getRequestDispatcher("/view/reservation.html");
+				reqDisp = request.getRequestDispatcher("/view/reservation.html");
 				reqDisp.forward(request, resp);
 			}
 			else {
-				RequestDispatcher reqDisp = request.getRequestDispatcher("index.html");
+				
+			}
+		}
+		
+		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
+			if (auth.signUp(u)) {
+				session.setAttribute("User", u);
+				if (((User) session.getAttribute("User")).getRole() == "Administrateur"){
+				//RequestDispatcher reqDisp = request.getRequestDispatcher("/view/reservation.html");
+				}
+				else {
+				reqDisp = request.getRequestDispatcher("/view/reservation.html");
+				}
+				reqDisp.forward(request, resp);
+			}
+			else {
+				reqDisp = request.getRequestDispatcher("index.html");
 				reqDisp.forward(request, resp);
 			}
 		}
-		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
-			if (auth.signUp(u)) session.setAttribute("User", u);
-			else auth.signUp(u); //relancer la page de création
-		}
 		
-
+		
+		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
+			if (auth.signUp(u)) {
+				session.setAttribute("User", u);
+				reqDisp = request.getRequestDispatcher("/view/reservation.html");
+				reqDisp.forward(request, resp);
+			}
+			else {
+				reqDisp = request.getRequestDispatcher("index.html");
+				reqDisp.forward(request, resp);
+			}
+		}
 	}
 
 
