@@ -38,9 +38,9 @@ public class PersistanceOracle implements IPersistance {
 			
 			pAddReservation = connexion.prepareStatement("insert into RESERVATIONS values (?, ?, ?, ?)");
 			
-			pAddNewUser = connexion.prepareStatement("insert into USER values (?,?,?,?,?)");
-			pCheckUser = connexion.prepareStatement("select * from USER where Login = ? and mdp = ?");
-			pFindUserByLogin = connexion.prepareStatement("select * from USER where Login = ?");
+			pAddNewUser = connexion.prepareStatement("insert into Comptes values (?,?,?,?,?)");
+			pCheckUser = connexion.prepareStatement("select * from Comptes where Login = ? and mdp = ?");
+			pFindUserByLogin = connexion.prepareStatement("select * from Comptes where Login = ?");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

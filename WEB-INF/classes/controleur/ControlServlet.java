@@ -33,39 +33,21 @@ public class ControlServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signIn")){
-			if (auth.signIn(u)) session.setAttribute("User", u);
-			else auth.signUp(u); //go sur la page de creation de compte
+			if (auth.signIn(u)){
+				session.setAttribute("User", u);
+				RequestDispatcher reqDisp = request.getRequestDispatcher("/view/reservation.html");
+				reqDisp.forward(request, resp);
+			}
+			else {
+				RequestDispatcher reqDisp = request.getRequestDispatcher("index.html");
+				reqDisp.forward(request, resp);
+			}
 		}
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
 			if (auth.signUp(u)) session.setAttribute("User", u);
 			else auth.signUp(u); //relancer la page de création
 		}
-		else if (request.getParameter("controlFunction").equals("reserver")) {
-			String destination	= request.getParameter("destination");
-			String dateDepart	= request.getParameter("date");	
-			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
-			try{	//Executer le service demandé
-				ReservationSA.creerReservation(u, destination, dateDepart, nbPlaces); 
-				request.setAttribute("confirmation", true);
-			}
-			catch (Exception e){
-				request.setAttribute("Error",e); 
-			}
-			RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispReservation.jsp");
-			reqDisp.forward(request, resp);
-
-		}
-		else if (request.getParameter("controlFunction").equalsIgnoreCase("search"))
-			try{	//Executer le service demandé
-				request.setAttribute("mat",VolSA.getDestination(Integer.parseInt(request.getParameter("mat"))));
-				request.setAttribute("confirmation", true);
-			}
-		catch (Exception e){
-			request.setAttribute("Error",e); 
-		}
-		//Mettre les résultats à la vue
-		RequestDispatcher reqDisp = request.getRequestDispatcher("/view/dispCamion.jsp");
-		reqDisp.forward(request, resp);
+		
 
 	}
 
