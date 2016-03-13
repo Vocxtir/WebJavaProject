@@ -18,4 +18,8 @@ public class UserSA {
 			return true ;	
 		return false ;
 	}
+	public User getUser(User u){
+		return ControlServlet.persist.getUser(u.getLogin());
+	}
+	
 }

@@ -10,7 +10,7 @@ public interface IPersistance {
 	
 	public void addUser(User user);
 	public boolean checkUser(User u);
-	public User findUserByLogin (String login);
+	public User getUser(String login);
 	
 	
 	public void addVol(Vol vol);
