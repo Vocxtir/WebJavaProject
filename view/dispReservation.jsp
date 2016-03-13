@@ -6,8 +6,10 @@
 	Exception error = (Exception) request.getAttribute("Error");
 	HttpSession session = request.getSession(true);
 	
-	List<Reservation> reservationUser = request.getParameter("listReserv"); <!-- return ArrayList<Resrvation> -->
-
+	List<Reservation> reservationUser = request.getParameter("listReserv");
+	/*
+	<!-- return ArrayList<Resrvation> -->
+	*/
 	
 	String htmlContent ;
 	
@@ -34,7 +36,7 @@
 	<%= htmlContent %>
 	
 </table>
-	</div>
+		</div>
 	<a href="../index.html"> Retour </a>
 	
 	</div>
