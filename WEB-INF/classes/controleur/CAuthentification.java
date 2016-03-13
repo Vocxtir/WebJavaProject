@@ -3,10 +3,10 @@ package controleur;
 import modele.User;
 import modele.UserSA;
 
-public class Authentification {
+public class CAuthentification {
 	private UserSA SA;
 	
-	public Authentification (){
+	public CAuthentification (){
 		SA = new UserSA();
 	}
 	

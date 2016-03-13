@@ -23,13 +23,19 @@
 %>
 
 
-<html> <body>
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" /> <body>
+
+	<div id="middle">
+		<div id="quicksearch">
 	<h1> Voici la liste de vos réservations</h1>
  <table style="width:100%">
 
 	<%= htmlContent %>
 	
 </table>
-	
+	</div>
 	<a href="../index.html"> Retour </a>
+	
+	</div>
 </body> </html>

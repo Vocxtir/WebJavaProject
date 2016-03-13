@@ -20,7 +20,7 @@ public class ControlServlet extends HttpServlet {
 	private static final long serialVersionUID = -226096639486289909L;
 
 	public static IPersistance persist = new PersistanceOracle();
-	Authentification auth = new Authentification();
+	CAuthentification auth = new CAuthentification();
 
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
 

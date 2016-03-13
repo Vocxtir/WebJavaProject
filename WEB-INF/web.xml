@@ -2,11 +2,11 @@
 
 	
 	<servlet>
-		<servlet-name> Authentification </servlet-name>
+		<servlet-name> ControlServlet </servlet-name>
 		<servlet-class> controleur.ControlServlet  </servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name> Authentification </servlet-name>
+		<servlet-name> ControlServlet </servlet-name>
 		<url-pattern> /controleur </url-pattern>
 	</servlet-mapping>
 

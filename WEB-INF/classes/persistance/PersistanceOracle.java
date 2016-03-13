@@ -20,9 +20,7 @@ public class PersistanceOracle implements IPersistance {
 	Connection connexion;
 
 	PreparedStatement pAddVol;
-
 	PreparedStatement pAddReservation;
-
 	PreparedStatement pAddNewUser ;
 	PreparedStatement pCheckUser ;
 	PreparedStatement pFindUserByLogin ;
@@ -35,12 +33,11 @@ public class PersistanceOracle implements IPersistance {
 			connexion = DriverManager.getConnection(_url, _user, _password);
 			
 			pAddVol = connexion.prepareStatement("insert into VOLS values (?, ?, ?, ?, ?)");
-			
 			pAddReservation = connexion.prepareStatement("insert into RESERVATIONS values (?, ?, ?, ?)");
-			
 			pAddNewUser = connexion.prepareStatement("insert into Comptes values (?,?,?,?,?)");
 			pCheckUser = connexion.prepareStatement("select * from Comptes where Login = ? and mdp = ?");
 			pFindUserByLogin = connexion.prepareStatement("select * from Comptes where Login = ?");
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
