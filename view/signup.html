@@ -4,9 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>B.F.C.E - Home</title>
-<link href="./view/style.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
 <!-- <link href="./view/popup.css" rel="stylesheet" type="text/css" /> -->
-
+<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 <div id="container">
@@ -26,7 +26,7 @@
 					<li><a href="#">Contact</a></li>
 				</ul>
 			</div>
-			
+
 			<div id="quicksearch">
 				<form action="controleur" method="POST">
 					<fieldset>
@@ -37,8 +37,9 @@
           <input type="password" name="password" value="">
           <input type="hidden" name="controlFunction" value="signIn">
 					<button type="submit" id="submit-go" class="submit">Log in</button>
+					
 					</fieldset>
-					<a id="signupPop" href="./view/signup.html"> Create an account </a>
+					
 				</form>
 			</div>
 		</div>
@@ -48,20 +49,30 @@
 					<h3>Client Spotlight</h3>
 					<p>Blablabla. This client is a great sponsor, and our biggest owner in terms of shares !</p>
 				</div>
-				<div class="threequartercolumn gray">
-					<h3>Learning Is Important</h3>
-					<img src="images/34007.jpg" width="150" height="105" alt="Business Image" class="right" />
-					<p>Larth was hopeful. He had been healthy all his life, partly, he believed, because he had always 
-been careful to show respect to the numina he encountered on his journeys.
-          Respecting the numina was important. The numen of the river could suck a man under and drown him. The numen 
-of a tree could trip a man with its roots, or drop a rotten branch on his head. Rocks could give way 
-underfoot, chuckling with amusement at their own treachery. Even the sky, with a roar of fury, sometimes sent 
-down fingers of fire that could roast a man like a rabbit on a spit, or worse, leave him alive but robbed of 
-his senses. Larth had heard that the earth itself could open and swallow a man; though he had never actually 
-seen such a thing, he nevertheless performed a ritual each morning, asking the earth’s permission before he 
-went striding across it.
-          “There’s something so special about this place,”.</p>
-				</div>
+			
+			<div id="dialog-form" title="Create new user">
+			  <p class="validateTips">All form fields are required.</p>
+			 <!-- INSCRIPTION -->
+			  <form id="signin" action="controleur" method="POST">
+				<fieldset>
+					<label for="login">Login</label>
+					<input type="text" name="login" id="login" value="" class="text ui-widget-content ui-corner-all">
+					  
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all">
+									 
+					<label for="surname">Surname</label>
+					<input type="text" name="surname" id="surname" value="" class="text ui-widget-content ui-corner-all">
+					<label for="Name">Name</label>
+					<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+					
+					<input type="hidden" name="role" value="client">
+				  <!-- Allow form submission with keyboard without duplicating the dialog button -->
+				  <input type="submit" tabindex="-1">
+				</fieldset>
+
+			  </form>
+			</div>
 			</div>
 			<p class="top"><a href="#">Return to Top</a></p>
 		</div>
