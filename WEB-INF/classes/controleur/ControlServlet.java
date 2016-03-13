@@ -19,24 +19,28 @@ public class ControlServlet extends HttpServlet {
 	private static final long serialVersionUID = -226096639486289909L;
 
 	public static IPersistance persist = new PersistanceOracle();
+	Authentification auth = new Authentification();
 
 	protected void doPost (HttpServletRequest request, HttpServletResponse resp) throws ServletException, java.io.IOException {
+		
 		//Identifier le service demandé
 		String login		= request.getParameter("login") ;
 		String password 	= request.getParameter("password");
 		String name			= request.getParameter("name");
 		String lastname		= request.getParameter("lastname");
 		User u = new User (login, password, name, lastname);
+		
 		HttpSession session = request.getSession(true);
+		
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signIn")){
-			if (new SignIn(u).signIn()) session.setAttribute("User", u);
-			else new SignUp(u).signUp();
+			if (auth.signIn(u)) session.setAttribute("User", u);
+			else auth.signUp(u); //go sur la page de creation de compte
 		}
 		if (request.getParameter("controlFunction").equalsIgnoreCase("signup")){
-			if (new SignUp(u).signUp()) session.setAttribute("User", u);
-			else new SignIn(u).signIn();
+			if (auth.signUp(u)) session.setAttribute("User", u);
+			else auth.signUp(u); //relancer la page de création
 		}
-		else if (functionRequest.equals("reserver")) {
+		else if (request.getParameter("controlFunction").equals("reserver")) {
 			String destination	= request.getParameter("destination");
 			String dateDepart	= request.getParameter("date");	
 			int nbPlaces = Integer.parseInt(request.getParameter("nbPlaces"));
@@ -51,7 +55,7 @@ public class ControlServlet extends HttpServlet {
 			reqDisp.forward(request, resp);
 
 		}
-		else if (functionRequest.equalsIgnoreCase("search"))
+		else if (request.getParameter("controlFunction").equalsIgnoreCase("search"))
 			try{	//Executer le service demandé
 				request.setAttribute("mat",VolSA.getDestination(Integer.parseInt(request.getParameter("mat"))));
 				request.setAttribute("confirmation", true);

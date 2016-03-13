@@ -14,7 +14,7 @@ public class PersistanceOracle implements IPersistance {
 	//Oracle
 	//public static String _url="jdbc:oracle:thin:@vs-oracle:1521:ORCL", _user = "GRP204US11", _password = "GRP204US11" ;		
 	//chez François
-	public static String _url="jdbc:oracle:thin:@localhost:1521/xe", _user = "webJava", _password = "webJava" ;
+	public static String _url="jdbc:oracle:thin:@localhost:1521/xe", _user = "webjava", _password = "webjava" ;
 	//MySQL
 	//public static String _url="jdbc:mysql://localhost:8080/TousAuSoleil" , _user = "root" , _password = "" ;	
 	Connection connexion;

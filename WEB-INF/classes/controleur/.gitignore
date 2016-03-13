@@ -1,3 +1,6 @@
 /AddReservationServlet.class
 /RegisterUserServlet.class
 /ControlServlet.class
+/AuthVerifServlet.class
+/Authentification.class
+/DisconnectServlet.class

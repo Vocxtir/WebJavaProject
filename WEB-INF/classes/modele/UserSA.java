@@ -4,11 +4,12 @@ package modele;
 import controleur.ControlServlet;
 
 public class UserSA {
-	public void createUser (User u) throws Exception {
+	public boolean createUser (User u) throws Exception {
 		if (ControlServlet.persist.checkUser(u))
-			throw new Exception("Utilisateur existant");
+			return false;
 		else {
 			ControlServlet.persist.addUser(u);
+			return true;
 		}
 	}
 	
