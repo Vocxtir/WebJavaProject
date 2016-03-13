@@ -4,7 +4,7 @@
 
 <%
 	Exception error = (Exception) request.getAttribute("Error");
-	String mat = request.getParameter("mat");
+	HttpSession session = request.getSession(true);
 	
 	List<Reservation> reservationUser = request.getParameter("listReserv"); <!-- return ArrayList<Resrvation> -->
 

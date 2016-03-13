@@ -11,19 +11,20 @@ public class Authentification {
 	}
 	
 	public boolean signIn(User u){
-		boolean retour = SA.signInUser(u);
-		u = SA.getUser(u);
-		return retour;
+		return SA.signInUser(u);
 	}
 	
 	public boolean signUp(User u){
 		try {
 			SA.createUser(u);
-			u = SA.getUser(u);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return this.signIn(u);
+	}
+	
+	public User getUser(User u){
+		return SA.getUser(u);
 	}
 	
 }

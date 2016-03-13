@@ -34,7 +34,7 @@ public class PersistanceOracle implements IPersistance {
 
 			connexion = DriverManager.getConnection(_url, _user, _password);
 			
-			pAddVol = connexion.prepareStatement("insert into VOL values (?, ?, ?)");
+			pAddVol = connexion.prepareStatement("insert into VOLS values (?, ?, ?, ?, ?)");
 			
 			pAddReservation = connexion.prepareStatement("insert into RESERVATIONS values (?, ?, ?, ?)");
 			
@@ -96,6 +96,7 @@ public class PersistanceOracle implements IPersistance {
 		try {
 			pFindUserByLogin.setString(1, login);
 			ResultSet resultat = pFindUserByLogin.executeQuery();
+			resultat.next();
 			String log = resultat.getString(1);
 			String passw = resultat.getString(2);
 			String name = resultat.getString(3);

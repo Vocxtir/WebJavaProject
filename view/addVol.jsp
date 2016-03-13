@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@ page import="modele.User"%>
 
-
-<%! 		
-		HttpSession session = request.getSession(true);
-		String username = session.getAttribute("User", u) ;
-		
+<%  
+	User u  = (User) session.getAttribute("User");
+	String username = u.getLogin();
 %>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>B.F.C.E - Home</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="./view/style.css" rel="stylesheet" type="text/css" />
 <!-- <link href="./view/popup.css" rel="stylesheet" type="text/css" /> -->
 
 </head>
@@ -36,30 +33,28 @@
 			</div>
 			
 			<div id="quicksearch" >
-				<form action="/addFlight" method="POST">
+				<form action="/WebJavaSoleil/controleur" method="POST">
 					<fieldset>
 					<legend>Register a new Flight</legend>
 					<label for="flightnum">Flight Number</label>
-					<input type="text" name="flightnum" value="">
+					<input type="text" name="numVol" value="">
 					
 					<label for="destination">Destination</label>
 					<input type="text" name="destination" value="">
 					
 										
-					<label for="departure">Departure</label>
-					<input type="text" name="departure" value="">
-					
-										
 					<label for="places">Places</label>
-					<input type="text" name="places" value="">
+					<input type="number" name="places" value="">
 					
+					<label for="price">Date</label>
+					<input type="date" name="date" value="">
 										
 					<label for="price">Price</label>
-					<input type="text" name="price" value="">
+					<input type="number" name="price" value="">
 					
 					<input type="hidden" name="controlFunction" value="addFlight">
 					
-					<button type="submit" id="submit-go" class="submit">Log in</button>
+					<button type="submit" id="submit-go" class="submit">Submit</button>
 					</fieldset>
 				</form>
 			</div>
